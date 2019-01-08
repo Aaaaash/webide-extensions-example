@@ -1,9 +1,22 @@
 const rpcProtocol = require('./rpcProtocol');
 
-const extensionsApi = {
-  setStatusBarMessage: (message) => {
-    rpcProtocol.emit('[RPC-MESSAGE]', { method: 'setStatusBarMessage', args: message });
-  },
-};
+function rpcCall(name, args) {
+  if (rpcProtocol) {
+    rpcProtocol.emit('[RPC-MESSAGE]', { method: name, args });
+  }
+}
 
-module.exports = extensionsApi;
+function apiFactory() {
+  const handler = {
+    get: (target, name) => {
+      target[name] = (...args) => {
+        rpcCall(name, args);
+      }
+      return target[name];
+    }
+  }
+  const proxy = new Proxy(Object.create(null), handler)
+  return proxy;
+}
+
+module.exports = apiFactory();
