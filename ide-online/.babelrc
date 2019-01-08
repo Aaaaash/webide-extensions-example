@@ -1,0 +1,28 @@
+{
+  "presets": [
+    ["@babel/preset-env", {"modules": false, "useBuiltIns": "entry"}],
+    ["@babel/preset-stage-0", { "decoratorsLegacy": true }]
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-export-default-from",
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+      ]
+    },
+    "development": {
+      "plugins": [
+      ]
+    },
+    "test": {
+      "presets": ["@babel/preset-es2015", "@babel/preset-stage-0"],
+        "plugins": [
+          ["@babel/plugin-proposal-decorators", { "legacy": true }]
+        ]
+    }
+  }
+}

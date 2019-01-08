@@ -1,0 +1,10 @@
+{
+  "name": "ide-host-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "sakuraash <841105127@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^2.2.0"
+  }
+}
